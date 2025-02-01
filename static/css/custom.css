@@ -2,6 +2,14 @@
 .red{
   color: red !important;
 }
+.red-bold {
+  color: red !important;
+  font-weight: bold !important;
+}
+
+.blue{
+  color: #0072ADFF !important;
+}
 
 .blue-bold {
   color: #0072ADFF;
@@ -171,3 +179,38 @@ figure.zoom {
   width: 100%;
   height: auto;
 }
+
+
+
+
+table.qualitative-table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px auto;
+}
+
+table.qualitative-table > td {
+  /* border: 1px solid #ddd; */
+  text-align: center;
+  vertical-align: middle;
+  
+}
+
+table.qualitative-table > tr:first-child td {
+  /* background-color: #f8f9fa; */
+  font-weight: bold;
+}
+
+
+table.qualitative-table > td:first-child {
+  /* background-color: #f8f9fa; */
+  font-weight: bold;
+}
+
+/* .border{
+  border: 1px solid #bbb;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 10px;
+  } */

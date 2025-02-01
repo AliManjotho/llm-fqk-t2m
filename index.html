@@ -213,17 +213,17 @@
   <div class="container is-max-desktop">
     <div class="hero-body">
 
-      <!-- <img src="./static/images-paper/walking_circle.png"
+      <img src="./static/images-paper/walking_circle.png"
                  alt="Walking in a circle."/>
 
       <h2 class="subtitle has-text-centered">
         A person <span class="blue-bold">walking</span> in a <span class="blue-bold">circle</span>.
-      </h2> -->
+      </h2>
 
 
-      <!-- <h2 class="subtitle has-text-centered">
+      <h2 class="subtitle has-text-centered">
         FQK-T2M generates semantically accurate and contextually aligned human motions.
-      </h2> -->
+      </h2>
     </div>
   </div>
 </section> -->
@@ -549,21 +549,184 @@
 
 
 
-
+    <br/>
     
 
     <!-- Evaluation and comparison with SOTA. -->
     <div class="columns is-centered">
-      <div class="column is-full-width">
+      <div class="column is-full-width ">
+        <br/><br/>
         <h2 class="title is-3">Evaluation and Comparison with SOTA</h2>
+        <br/>
+
+        
+
+        <h3 class="title is-4">Qualitative Evaluation on HumanML3D</h3>
+        <div class="content has-text-centered">
+
+          <h5>(The frames in <span class="blue-bold">BLUE</span> meshes indicate valid motions, frames with <span class="red-bold">RED</span> meshes indicate anomalies)</h5>
+
+        <table class="qualitative-table">
+          <tr>
+            <td><h6 class="subtitle has-text-centered">
+              Method
+            </h6>
+            </td>
+
+              <td><h6 class="subtitle has-text-centered">
+                A person is <span class="blue-bold">walking <br/>straight</span> and <span class="blue-bold">turns left</span>.
+              </h6>
+              </td>
+      
+              <td><h6 class="subtitle has-text-centered">
+                A person is <span class="blue-bold">walking <br/>forward slowly</span> while <br/>holding <span class="blue-bold">both arms slightly up</span>.
+              </h6>
+              </td>
+
+              <td><h6 class="subtitle has-text-centered">
+                A person is <span class="blue-bold">sprinting forward </span> and <br/><span class="blue-bold">bends down</span>.
+              </h6>
+              </td>
+
+              <td><h6 class="subtitle has-text-centered">
+                A person is <span class="blue-bold">walking <br/>slightly slowly </span> in a <br/><span class="blue-bold">circle</span>.
+              </h6>
+              </td>
+
+      
+          </tr>
+          <tr>
+            <td><h6 class="subtitle has-text-centered">
+              TEMOS
+            </h6>
+            </td>
+              <td>
+                  <video class="video border" poster="" autoplay controls muted loop playsinline width="240" height="270">
+                      <source src="./static/videos-paper/1_3.mp4"
+                              type="video/mp4">
+                  </video>
+              </td>
+              <td>
+                  <video class="video border" poster="" autoplay controls muted loop playsinline width="240" height="270">
+                      <source src="./static/videos-paper/2_0.mp4"
+                              type="video/mp4">
+                  </video>
+              </td>
+              <td>
+                  <video class="video border" poster="" autoplay controls muted loop playsinline width="240" height="270">
+                      <source src="./static/videos-paper/3_0.mp4"
+                              type="video/mp4">
+                  </video>
+              </td>
+              <td>
+                  <video class="video border" poster="" autoplay controls muted loop playsinline width="240" height="270">
+                      <source src="./static/videos-paper/4_8.mp4"
+                              type="video/mp4">
+                  </video>
+              </td>
+          </tr>
+          <tr>
+            <td><h6 class="subtitle has-text-centered">
+              T2M-GPT
+            </h6>
+            </td>
+              <td>
+                  <video class="video border" poster="" autoplay controls muted loop playsinline width="240" height="270">
+                      <source src="./static/videos-paper/1_1.mp4"
+                              type="video/mp4">
+                  </video>
+              </td>
+              <td>
+                  <video class="video border" poster="" autoplay controls muted loop playsinline width="240" height="270">
+                      <source src="./static/videos-paper/2_1.mp4"
+                              type="video/mp4">
+                  </video>
+              </td>
+              <td>
+                  <video class="video border" poster="" autoplay controls muted loop playsinline width="240" height="270">
+                      <source src="./static/videos-paper/3_9.mp4"
+                              type="video/mp4">
+                  </video>
+              </td>
+              <td>
+                  <video class="video border" poster="" autoplay controls muted loop playsinline width="240" height="270">
+                      <source src="./static/videos-paper/4_5.mp4"
+                              type="video/mp4">
+                  </video>
+              </td>
+          </tr>
+          <tr>
+            <td><h6 class="subtitle has-text-centered">
+              MotionGPT
+            </h6>
+            </td>
+              <td>
+                  <video class="video border" poster="" autoplay controls muted loop playsinline width="240" height="270">
+                      <source src="./static/videos-paper/1_0.mp4"
+                              type="video/mp4">
+                  </video>
+              </td>
+              <td>
+                  <video class="video border" poster="" autoplay controls muted loop playsinline width="240" height="270">
+                      <source src="./static/videos-paper/2_8.mp4"
+                              type="video/mp4">
+                  </video>
+              </td>
+              <td>
+                  <video class="video border" poster="" autoplay controls muted loop playsinline width="240" height="270">
+                      <source src="./static/videos-paper/3_1.mp4"
+                              type="video/mp4">
+                  </video>
+              </td>
+              <td>
+                  <video class="video border" poster="" autoplay controls muted loop playsinline width="240" height="270">
+                      <source src="./static/videos-paper/4_1.mp4"
+                              type="video/mp4">
+                  </video>
+              </td>
+          </tr>
+          <tr>
+            <td><h6 class="subtitle has-text-centered">
+              Ours
+            </h6>
+            </td>
+              <td>
+                  <video class="video border" poster="" autoplay controls muted loop playsinline width="240" height="270">
+                      <source src="./static/videos-paper/1_0.mp4"
+                              type="video/mp4">
+                  </video>
+              </td>
+              <td>
+                  <video class="video border" poster="" autoplay controls muted loop playsinline width="240" height="270">
+                      <source src="./static/videos-paper/2_7.mp4"
+                              type="video/mp4">
+                  </video>
+              </td>
+              <td>
+                  <video class="video border" poster="" autoplay controls muted loop playsinline width="240" height="270">
+                      <source src="./static/videos-paper/3_1.mp4"
+                              type="video/mp4">
+                  </video>
+              </td>
+              <td>
+                  <video class="video border" poster="" autoplay controls muted loop playsinline width="240" height="270">
+                      <source src="./static/videos-paper/4_1.mp4"
+                              type="video/mp4">
+                  </video>
+              </td>
+          </tr>
+      </table>
+
+      </div>
+
 
         <!--  Qual. Eval. -->
         <h3 class="title is-4">Qualitative Evaluation on HumanML3D</h3>
         <div class="content has-text-justified">
-          <p>
+          <!-- <p>
             Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
             viewpoint such as a stabilized camera by playing back the training deformations.
-          </p>
+          </p> -->
         </div>
         <div class="content has-text-centered">
           <img src="./static/images-paper/fig-quant-eval-ablation.png"/>
@@ -574,10 +737,10 @@
         <!--  Fuzzy Membership Examples Studies. -->
         <h3 class="title is-4">Learned Fuzzy Membership Functions and Uncertainity Modeling</h3>
         <div class="content has-text-justified">
-          <p>
+          <!-- <p>
             Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
             viewpoint such as a stabilized camera by playing back the training deformations.
-          </p>
+          </p> -->
         </div>
         <div class="content has-text-centered">
           <img src="./static/images-paper/fig-uncertainty-example.png", width="70%"/>
@@ -594,11 +757,11 @@
         <!-- Qunat. HumanML3D. -->
         <h3 class="title is-4">Quantitative Evaluation on HumanML3D</h3>
         <div class="content has-text-justified">
-          <p>
+          <!-- <p>
             We can also animate the scene by interpolating the deformation latent codes of two input
             frames. Use the slider here to linearly interpolate between the left frame and the right
             frame.
-          </p>
+          </p> -->
           <div class="content has-text-centered">
             <img src="./static/images-paper/fig-quant-eval-humanml3d.png"/>
           </div>
@@ -609,10 +772,10 @@
         <!-- Qunat. KITML. -->
         <h3 class="title is-4">Quantitative Evaluation on KITML</h3>
         <div class="content has-text-justified">
-          <p>
+          <!-- <p>
             Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
             viewpoint such as a stabilized camera by playing back the training deformations.
-          </p>
+          </p> -->
         </div>
         <div class="content has-text-centered">
           <img src="./static/images-paper/fig-quant-eval-kitml.png"/>
@@ -632,10 +795,10 @@
         <!--  Ablation Studies. -->
         <h3 class="title is-4">Ablation Studies</h3>
         <div class="content has-text-justified">
-          <p>
+          <!-- <p>
             Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
             viewpoint such as a stabilized camera by playing back the training deformations.
-          </p>
+          </p> -->
         </div>
         <div class="content has-text-centered">
           <img src="./static/images-paper/fig-quant-eval-ablation.png"/>
