@@ -1,870 +1,527 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="description"
-        content="Fuzzy Kinematic Modeling and LLM-Guidance for Resolving Kinematic Uncertainties and Linguistic Ambiguities in Text-to-Motion Generation.">
-  <meta name="keywords" content="text-to-motion, FQK-T2M, fuzzy kinematic modeling, LLM-guaidance, linguistic ambiguities, d-fkf, llm-ar, c-mdm">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FQK-T2M</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FQK-T2M</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet">
+    <link rel="icon" href="./images/favicon.svg">
+    <link rel="stylesheet" href="styles.css">
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
+    <link rel="stylesheet" href="./animation-slider/css/index.css">
+    <script src="./animation-slider/scripts/index.js"></script>
 
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-
-    gtag('js', new Date());
-
-    gtag('config', 'G-PYVRSFMDRL');
-  </script>
-
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
-
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="stylesheet" href="./static/css/custom.css">
-  <link rel="icon" href="./static/images/favicon.svg">
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
-  <script src="./static/js/index.js"></script>
-  <script src="./static/js/custom.js"></script>
 </head>
 <body>
+    <div class="container">
+        <header>
+            <h1 class="project-title">Fuzzy Kinematic Modeling and LLM-Guidance for Resolving Kinematic Uncertainties and Linguistic Ambiguities in Text-to-Motion Generation</h1>
+        </header>
 
-<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-  <div class="navbar-menu">
-    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <a class="navbar-item" href="https://keunhong.com">
-      <span class="icon">
-          <i class="fas fa-home"></i>
-      </span>
-      </a>
+        <div class="affiliations">(Expert Systems with Applications) </div>
 
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More Research
-        </a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item" href="https://hypernerf.github.io">
-            HyperNeRF
-          </a>
-          <a class="navbar-item" href="https://nerfies.github.io">
-            Nerfies
-          </a>
-          <a class="navbar-item" href="https://latentfusion.github.io">
-            LatentFusion
-          </a>
-          <a class="navbar-item" href="https://photoshape.github.io">
-            PhotoShape
-          </a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</nav> -->
-
-
-
-
-
-<section class="hero">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h1 class="title is-2 publication-title">Fuzzy Kinematic Modeling and LLM-Guidance for Resolving Kinematic Uncertainties and Linguistic Ambiguities in Text-to-Motion Generation</h1>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              <a href="https://scholar.google.com.pk/citations?user=nmVlfioAAAAJ&hl=en">Ali Asghar Manjotho</a><sup>1,2</sup>,</span>
-            <span class="author-block">
-              <a href="https://www.researchgate.net/scientific-contributions/Tekie-Tsegay-Tewolde-2271209848">Tekie Tsegay Tewolde</a><sup>1</sup>,</span>
-            <span class="author-block">
-              <a href="https://scholar.google.com/citations?user=t3J1irkAAAAJ&hl=en">Ramadhani Ally Duma</a><sup>1,3</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://www.researchgate.net/profile/Zhendong-Niu-2">Zhendong Niu</a><sup>1</sup>
-            </span>
-          </div>
-
-          <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>Beijing Institute of Technology, China,</span>
-            <span class="author-block"><sup>2</sup>Mehran University of Engineering and Technology, Pakistan,</span>
-            <span class="author-block"><sup>3</sup>The University of Dodoma, Tanzania.</span>
-          </div>
-
-          <h2 class="subtitle has-text-centered">
-            (Expert Systems with Applications)
-          </h2>
-
-          <div class="column has-text-centered">
-            <div class="publication-links">
-              <!-- PDF Link. -->
-              <span class="link-block">
-                <a href="#"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="#"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span>
-              <!-- Video Link. -->
-              <span class="link-block">
-                <a href="#"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-youtube"></i>
-                  </span>
-                  <span>Video</span>
-                </a>
-              </span>
-              <!-- Code Link. -->
-              <span class="link-block">
-                <a href="#"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-github"></i>
-                  </span>
-                  <span>Code (Comming soon)</span>
-                  </a>
-              </span>
-              <!-- Dataset Link. -->
-              <!-- <span class="link-block">
-                <a href="https://github.com/google/nerfies/releases/tag/0.1"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="far fa-images"></i>
-                  </span>
-                  <span>Data</span>
-                  </a> -->
+        <section class="authors">
+            <div class="author">
+                <a href="https://scholar.google.com.pk/citations?user=nmVlfioAAAAJ&hl=en"><h3>Ali Asghar Manjotho<sup>1,2</sup><span>,</span></h3></a>
+                <a href="https://www.researchgate.net/scientific-contributions/Tekie-Tsegay-Tewolde-2271209848"><h3>Tekie Tsegay Tewolde<sup>1</sup><span>,</span></h3></a>
+                <a href="https://scholar.google.com/citations?user=t3J1irkAAAAJ&hl=en"><h3>Ramadhani Ally Duma<sup>1,3</sup><span>,</span></h3></a>
+                <a href="https://www.researchgate.net/profile/Zhendong-Niu-2"><h3>Zhendong Niu<sup>1</sup></h3></a>
+            </div>
+            
+            <div class="affiliations">
+                <p><sup>1</sup>Beijing Institute of Technology, China, <sup>2</sup>Mehran University of Engineering and Technology, Pakistan,</p>
+                <p><sup>2</sup>The University of Dodoma, Tanzania.</p>
             </div>
 
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<section class="section" style="margin-top: 0; padding-top: 0;">
-  <div class="container is-max-desktop content is-centered has-text-centered">
-
-    <div class="compare-video" >
-      <div class="video-container border">
-          <video class="video-after" autoplay loop muted playsinline>
-              <source src="./static/videos-paper/walk-1.mp4" type="video/mp4">
-          </video>
-          <div class="video-before">
-              <video autoplay loop muted playsinline>
-                  <source src="./static/videos-paper/walk-2.mp4" type="video/mp4">
-              </video>
-          </div>
-          <div class="slider">
-              <div class="slider-handle"><span></span></div>
-          </div>
-      </div>
-  </div>
-
-  <h5 class="subtitle has-text-centered is-5" style="margin-top: 10px;">
-    A person <span class="blue-bold">walking</span> in a <span class="blue-bold">circle</span>.
-  </h5>
-  <br/>
-
-  <p class="subtitle has-text-centered is-normal">
-    FQK-T2M generates semantically accurate and contextually aligned human motions.
-  </p>
-
-</div>
-</section>
-
-
-<!-- <section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-
-      <img src="./static/images-paper/walking_circle.png"
-                 alt="Walking in a circle."/>
-
-      <h2 class="subtitle has-text-centered">
-        A person <span class="blue-bold">walking</span> in a <span class="blue-bold">circle</span>.
-      </h2>
-
-
-      <h2 class="subtitle has-text-centered">
-        FQK-T2M generates semantically accurate and contextually aligned human motions.
-      </h2>
-    </div>
-  </div>
-</section> -->
+        </section>
 
 
 
 
 
-<!-- VIDEOS ROW 1-->
-<section class="hero is-light is-small">
-  <div class="container">
-    <div class="columns is-centered">
-
-      <!-- Video 1 -->
-      <div class="column has-text-centered">
-        <div class="columns is-centered">
-          <div class="column content  has-text-centered">          
-            <video class="video" poster="" autoplay controls muted loop playsinline width="240" height="270">
-              <source src="./static/videos-paper/video-back-kick.mp4"
-                      type="video/mp4">
-            </video>
-            <h6 class="subtitle has-text-centered">
-              Performing <span class="blue-bold">karate back kick</span>.  
-            </h6>
-          </div>
-
-        </div>
-      </div>
-      <!--/ Video 1 -->
-
-
-      <!-- Video 2 -->
-      <div class="column has-text-centered">
-        <div class="columns is-centered">
-          <div class="column content  has-text-centered">          
-            <video class="video" poster="" autoplay controls muted loop playsinline width="240" height="270">
-              <source src="./static/videos-paper/video-punching.mp4"
-                      type="video/mp4">
-            </video>
-            <h6 class="subtitle has-text-centered">
-              Punching <span class="blue-bold"></span>the opponent <span class="blue-bold">repetitively</span>.  
-            </h6>
-          </div>
-
-        </div>
-      </div>
-      <!--/ Video 2 -->
-
-      <!-- Video 3 -->
-      <div class="column has-text-centered">
-        <div class="columns is-centered">
-          <div class="column content  has-text-centered">          
-            <video class="video" poster="" autoplay controls muted loop playsinline width="240" height="270">
-              <source src="./static/videos-paper/video-jump-rope.mp4"
-                      type="video/mp4">
-            </video>
-            <h6 class="subtitle has-text-centered">
-              Performing <span class="blue-bold">jump rope</span>.
-            </h6>
-            
-          </div>
-
-        </div>
-      </div>
-      <!--/ Video 3 -->
-
-      <!-- Video 4 -->
-      <div class="column has-text-centered">
-        <div class="columns is-centered">
-          <div class="column content  has-text-centered">          
-            <video class="video" poster="" autoplay controls muted loop playsinline width="240" height="270">
-              <source src="./static/videos-paper/video-hopping.mp4"
-                      type="video/mp4">
-            </video>
-            <h6 class="subtitle has-text-centered">
-              Standing on <span class="blue-bold">one leg</span> and <span class="blue-bold">hopping</span>.
-            </h6>
-          </div>
-
-        </div>
-      </div>
-      <!--/ Video 4 -->
+        <!-- Add new section for buttons -->
+        <section class="project-links">
+            <a href="#" class="link-button paper">
+                <svg class="icon" viewBox="0 0 24 24" width="24" height="24">
+                    <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+                </svg>
+                Paper
+            </a>
+            <a href="#" class="link-button arxiv">
+                <svg class="icon" viewBox="0 0 24 24" width="24" height="24">
+                    <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3M9.5 11.5C9.5 12.3 8.8 13 8 13H7V15H5.5V9H8C8.8 9 9.5 9.7 9.5 10.5V11.5M14.5 13.5C14.5 14.3 13.8 15 13 15H10.5V9H13C13.8 9 14.5 9.7 14.5 10.5V13.5M18.5 10.5H17V11.5H18.5V13H17V15H15.5V9H18.5V10.5M7 10.5H8V11.5H7V10.5M12 13.5H13V10.5H12V13.5Z"/>
+                </svg>
+                arXiv
+            </a>
+            <a href="#" class="link-button video-link">
+                <svg class="icon" viewBox="0 0 24 24" width="24" height="24">
+                    <path d="M10,16.5V7.5L16,12M20,4.4C19.4,4.2 15.7,4 12,4C8.3,4 4.6,4.19 4,4.38C2.44,4.9 2,8.4 2,12C2,15.59 2.44,19.1 4,19.61C4.6,19.81 8.3,20 12,20C15.7,20 19.4,19.81 20,19.61C21.56,19.1 22,15.59 22,12C22,8.4 21.56,4.91 20,4.4Z"/>
+                </svg>
+                Video
+            </a>
+            <a href="#" class="link-button code disabled">
+                <svg class="icon" viewBox="0 0 24 24" width="24" height="24">
+                    <path d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z"/>
+                </svg>
+                Code (Coming soon)
+            </a>
+        </section>
 
     </div>
-  </div>
-</section>
+
+
+    <section class="section-compare-video">
+        <div class="compare-video" >
+            <div class="video-container border">
+                <video class="video-after" autoplay loop muted playsinline>
+                    <source src="./videos-paper/walk-1.mp4" type="video/mp4">
+                </video>
+            <div class="video-before">
+                <video autoplay loop muted playsinline>
+                    <source src="./videos-paper/walk-2.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="slider">
+                <div class="slider-handle"><span></span></div>
+            </div>
+        </div>
+
+        <h2>A person <span class="blue-bold">walking</span> in a <span class="blue-bold">circle</span>.</h2>
+
+    </section>
 
 
 
 
+    <div class="full-width-container ">
+        <div class="container">
 
-<!-- VIDEOS ROW 2-->
-<section class="hero is-light is-small">
-  <div class="container">
-    <div class="columns is-centered">
-
-      <!-- Video 1 -->
-      <div class="column has-text-centered">
-        <div class="columns is-centered">
-          <div class="column content  has-text-centered">          
-            <video class="video" poster=""  autoplay controls muted loop playsinline width="240" height="270">
-              <source src="./static/videos-paper/video-balance-rope.mp4"
-                      type="video/mp4">
-            </video>
-            <h6 class="subtitle has-text-centered">
-              Balance on a rope and <br/><span class="blue-bold">left foot</span> is <span class="blue-bold">infront</span>.  
-            </h6>
-          </div>
+            <section class="abstract">
+                <h2>Abstract</h2>
+                <p>
+                    Generating realistic and coherent human motions from text descriptions is essential for applications in computer vision, animations, and digital environments. However, existing text-to-motion generation models often overlook <b>kinematic uncertainties</b> and <b>linguistic ambiguities</b>, leading to unnatural and misaligned motion sequences. To address these issues, we propose a novel framework that integrates fuzzy kinematic modeling with large language model (LLM) guidance to jointly model kinematic uncertainties and resolve linguistic ambiguities. Our approach first extracts rich kinematic attributes from raw motion data and converts them into fuzzy kinematic facts (FKFs), which serve as an uncertainty-aware motion representation across different kinematic hierarchies. Simultaneously, we refine ambiguous text descriptions by extracting contextual terms using LLM-guided few-shot in-context learning, enhancing text with additional semantic clarity. These FKFs and contextual terms are then used to train a diffusion-based motion generation model, ensuring semantically accurate and physically plausible motion synthesis. To further improve motion quality, we introduce a Graph-Augmented Self-Attention (GASA) module, which injects spatio-temporal relational constraints into the diffusion process, enhancing motion coherence and structural consistency. Evaluations on <b>HumanML3D</b> and <b>KIT-ML</b> datasets demonstrate that our method outperforms state-of-the-art models, achieving the lowest FID scores (0.052 and 0.091) and reducing uncertainty footprint by 21.1% and 17.7%, respectively.
+                </p>
+            </section>
 
         </div>
-      </div>
-      <!--/ Video 1 -->
-
-      
-
-      <!-- Video 2 -->
-      <div class="column has-text-centered">
-        <div class="columns is-centered">
-          <div class="column content  has-text-centered">          
-            <video class="video" poster="" autoplay controls muted loop playsinline width="240" height="270">
-              <source src="./static/videos-paper/video-waving_left_hand.mp4"
-                      type="video/mp4">
-            </video>
-            <h6 class="subtitle has-text-centered">
-              A person <span class="blue-bold">waving</span> with <br/><span class="blue-bold">left hand</span>.  
-            </h6>
-          </div>
-
-        </div>
-      </div>
-      <!--/ Video 2 -->
-
-
-      <!-- Video 3 -->
-      <div class="column has-text-centered">
-        <div class="columns is-centered">
-          <div class="column content  has-text-centered">          
-            <video class="video" poster="" autoplay controls muted loop playsinline width="240" height="270">
-              <source src="./static/videos-paper/video-professional-kick.mp4"
-                      type="video/mp4">
-            </video>
-            <h6 class="subtitle has-text-centered">
-              <span class="blue-bold">Professional</span> player kicking <br/>a <span class="blue-bold">ball</span>.
-            </h6>
-          </div>
-
-        </div>
-      </div>
-      <!--/ Video 3 -->
-
-
-      <!-- Video 4 -->
-      <div class="column has-text-centered">
-        <div class="columns is-centered">
-          <div class="column content  has-text-centered">          
-            <video class="video" poster=""  autoplay controls muted loop playsinline width="240" height="270">
-              <source src="./static/videos-paper/video-novice-kick.mp4"
-                      type="video/mp4">
-            </video>
-            <h6 class="subtitle has-text-centered">
-              <span class="blue-bold">Novice</span> kicking a <span class="blue-bold">ball</span>.
-            </h6>
-          </div>
-
-        </div>
-      </div>
-      <!--/ Video 4 -->
-
-      
-
     </div>
-  </div>
-</section>
-
-
-<!-- Interpolation. -->
-<section class="section">
-  <div class="container is-max-desktop">
-
-    <div class="content has-text-justified">
-
-    <div class="columns is-vcentered interpolation-panel">
-      <div class="column is-3 has-text-centered">
-        <img src="./static/interpolation/back_kick/frame_1.png"
-             class="interpolation-image"
-             alt="Interpolate start reference image."/>
-        <p>Start Frame</p>
-      </div>
-      <div class="column interpolation-video-column">
-        <div id="interpolation-image-wrapper">
-          Loading...
-        </div>
-        <input class="slider is-fullwidth is-large is-info"
-               id="interpolation-slider"
-               step="1" min="1" max="72" value="1" type="range">
-      </div>
-      <div class="column is-3 has-text-centered">
-        <img src="./static/interpolation/back_kick/frame_n.png"
-             class="interpolation-image"
-             alt="Interpolation end reference image."/>
-        <p class="is-bold">End Frame</p>
-      </div>
-    </div>
-    <br/>
-
-
-  </div>
-</section>
-        <!--/ Interpolation. -->
 
 
 
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-five-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-            Generating realistic and coherent human motions from text descriptions is essential for applications in computer vision, animations, and digital environments. However, existing text-to-motion generation models often overlook <b>kinematic uncertainties</b> and <b>linguistic ambiguities</b>, leading to unnatural and misaligned motion sequences. To address these issues, we propose a novel framework that integrates fuzzy kinematic modeling with large language model (LLM) guidance to jointly model kinematic uncertainties and resolve linguistic ambiguities. Our approach first extracts rich kinematic attributes from raw motion data and converts them into fuzzy kinematic facts (FKFs), which serve as an uncertainty-aware motion representation across different kinematic hierarchies. Simultaneously, we refine ambiguous text descriptions by extracting contextual terms using LLM-guided few-shot in-context learning, enhancing text with additional semantic clarity. These FKFs and contextual terms are then used to train a diffusion-based motion generation model, ensuring semantically accurate and physically plausible motion synthesis. To further improve motion quality, we introduce a Graph-Augmented Self-Attention (GASA) module, which injects spatio-temporal relational constraints into the diffusion process, enhancing motion coherence and structural consistency. Evaluations on <b>HumanML3D</b> and <b>KIT-ML</b> datasets demonstrate that our method outperforms state-of-the-art models, achieving the lowest FID scores (0.052 and 0.091) and reducing uncertainty footprint by 21.1% and 17.7%, respectively. 
-          </p>       
-        </div>
-      </div>
-    </div>
-    <!--/ Abstract. -->
-
-
-    <!-- Method. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-five-fifths">
-        <h2 class="title is-3">Proposed Method</h2>
-
-        <p class="red">(Hover the mouse over image to Zoom)</p>
-
-          <figure class="zoom" onmousemove="zoom(event)" style="background-image: url(./static/images-paper/fig-model.png)">
-            <img src="./static/images-paper/fig-model.png"/>
-          </figure>
-          <p>
-            Overview of the Proposed Framework: (a) Stage 1: modeling kinematic uncertainty and linguistic ambiguity resolution, (b) Stage 2: contextual motion diffusion (C-MDM).
-          </p>        
-      </div>
-    </div>
-    <!--/ Method. -->
-
-
-    <!-- KFs. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-five-fifths">
-        <h2 class="title is-3">Kinematic Facts (KFs)</h2>
-
-        <p class="red">(Hover the mouse over image to Zoom)</p>
-
-          <figure class="zoom" onmousemove="zoom(event)" style="background-image: url(./static/images-paper/fig-kfs.png)">
-            <img src="./static/images-paper/fig-kfs.png"/>
-          </figure>
-          <p>
-            Visualization of kinematic facts: LLA, JLA, JJA, JJD, JLD, LLD, JD, LD, LAD, JS, and LS across two consecutive frames <i>t</i> and <i>t-1</i>.
-          </p>        
-      </div>
-    </div>
-    <!--/ Method. -->
-
-    <!-- Paper video. -->
-    <!-- <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Video</h2>
-        <div class="publication-video">
-          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
-                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </div>
-      </div>
-    </div> -->
-    <!--/ Paper video. -->
-  </div>
-</section>
-
-
-<section class="section">
-  <div class="container is-max-desktop">
-
-    <div class="columns is-centered">
-
-      
-
-      <!-- D-FKF. -->
-      <div class="column gray-border rounded-border">
-        <div class="content has-text-centered">
-          <h2 class="title is-3">D-FKF Module</h2>
-          <p>
-            The Dual-branch Fuzzy Kinematic Fact (D-FKF) module automatically learn these membership functions, employing a dual-branch adaptive neuro-fuzzy inference (D-ANFIS).
-          </p>
-          <div class="content is-centered"> 
-            <img src="./static/images-paper/fig-dfkf.png"/>
-          </div>
-          
-
-        </div>
-      </div>
-      <!--/ D-FKF. -->
-
-
-      <!-- GASA. -->
-      <div class="column gray-border rounded-border has-text-centered">
-        <h2 class="title is-3">GASA Module</h2>
-        <div class="columns is-centered">
-          <div class="column content  has-text-justified">
-            <p>
-              We introduce Graph-Augmented Self-Attention (GASA) Module, a modified self-attention block, that integrates missing spatio-temporal relational guidance via two graph structures.
-            </p>
-            <img src="./static/images-paper/fig-gasa.png"/>
-          </div>
-
-        </div>
-      </div>
-      <!--/ GASA. -->
-
-    </div>
-    
-
-
-
-
-
-    <br/>
-    
-
-    <!-- Evaluation and comparison with SOTA. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width ">
-        <br/><br/>
-        <h2 class="title is-3">Evaluation and Comparison with SOTA</h2>
-        <br/>
 
         
+    <div class="container">
 
-        <h3 class="title is-4">Qualitative Evaluation on HumanML3D</h3>
-        <div class="content has-text-centered">
-
-          <h5>(The frames in <span class="blue-bold">BLUE</span> meshes indicate valid motions, frames with <span class="red-bold">RED</span> meshes indicate anomalies)</h5>
-
-        <table class="qualitative-table">
-          <tr>
-            <td><h6 class="subtitle has-text-centered">
-              Method
-            </h6>
-            </td>
-
-              <td><h6 class="subtitle has-text-centered">
-                A person is <span class="blue-bold">walking <br/>straight</span> and <span class="blue-bold">turns left</span>.
-              </h6>
-              </td>
-      
-              <td><h6 class="subtitle has-text-centered">
-                A person is <span class="blue-bold">walking <br/>forward slowly</span> while <br/>holding <span class="blue-bold">both arms slightly up</span>.
-              </h6>
-              </td>
-
-              <td><h6 class="subtitle has-text-centered">
-                A person is <span class="blue-bold">sprinting forward </span> and <br/><span class="blue-bold">bends down</span>.
-              </h6>
-              </td>
-
-              <td><h6 class="subtitle has-text-centered">
-                A person is <span class="blue-bold">walking <br/>slightly slowly </span> in a <br/><span class="blue-bold">circle</span>.
-              </h6>
-              </td>
-
-      
-          </tr>
-          <tr>
-            <td><h6 class="subtitle has-text-centered">
-              TEMOS
-            </h6>
-            </td>
-              <td>
-                  <video class="video border" poster="" autoplay controls muted loop playsinline width="240" height="270">
-                      <source src="./static/videos-paper/1_3.mp4"
-                              type="video/mp4">
-                  </video>
-              </td>
-              <td>
-                  <video class="video border" poster="" autoplay controls muted loop playsinline width="240" height="270">
-                      <source src="./static/videos-paper/2_0.mp4"
-                              type="video/mp4">
-                  </video>
-              </td>
-              <td>
-                  <video class="video border" poster="" autoplay controls muted loop playsinline width="240" height="270">
-                      <source src="./static/videos-paper/3_0.mp4"
-                              type="video/mp4">
-                  </video>
-              </td>
-              <td>
-                  <video class="video border" poster="" autoplay controls muted loop playsinline width="240" height="270">
-                      <source src="./static/videos-paper/4_8.mp4"
-                              type="video/mp4">
-                  </video>
-              </td>
-          </tr>
-          <tr>
-            <td><h6 class="subtitle has-text-centered">
-              T2M-GPT
-            </h6>
-            </td>
-              <td>
-                  <video class="video border" poster="" autoplay controls muted loop playsinline width="240" height="270">
-                      <source src="./static/videos-paper/1_1.mp4"
-                              type="video/mp4">
-                  </video>
-              </td>
-              <td>
-                  <video class="video border" poster="" autoplay controls muted loop playsinline width="240" height="270">
-                      <source src="./static/videos-paper/2_1.mp4"
-                              type="video/mp4">
-                  </video>
-              </td>
-              <td>
-                  <video class="video border" poster="" autoplay controls muted loop playsinline width="240" height="270">
-                      <source src="./static/videos-paper/3_9.mp4"
-                              type="video/mp4">
-                  </video>
-              </td>
-              <td>
-                  <video class="video border" poster="" autoplay controls muted loop playsinline width="240" height="270">
-                      <source src="./static/videos-paper/4_5.mp4"
-                              type="video/mp4">
-                  </video>
-              </td>
-          </tr>
-          <tr>
-            <td><h6 class="subtitle has-text-centered">
-              MotionGPT
-            </h6>
-            </td>
-              <td>
-                  <video class="video border" poster="" autoplay controls muted loop playsinline width="240" height="270">
-                      <source src="./static/videos-paper/1_0.mp4"
-                              type="video/mp4">
-                  </video>
-              </td>
-              <td>
-                  <video class="video border" poster="" autoplay controls muted loop playsinline width="240" height="270">
-                      <source src="./static/videos-paper/2_8.mp4"
-                              type="video/mp4">
-                  </video>
-              </td>
-              <td>
-                  <video class="video border" poster="" autoplay controls muted loop playsinline width="240" height="270">
-                      <source src="./static/videos-paper/3_1.mp4"
-                              type="video/mp4">
-                  </video>
-              </td>
-              <td>
-                  <video class="video border" poster="" autoplay controls muted loop playsinline width="240" height="270">
-                      <source src="./static/videos-paper/4_1.mp4"
-                              type="video/mp4">
-                  </video>
-              </td>
-          </tr>
-          <tr>
-            <td><h6 class="subtitle has-text-centered">
-              Ours
-            </h6>
-            </td>
-              <td>
-                  <video class="video border" poster="" autoplay controls muted loop playsinline width="240" height="270">
-                      <source src="./static/videos-paper/1_0.mp4"
-                              type="video/mp4">
-                  </video>
-              </td>
-              <td>
-                  <video class="video border" poster="" autoplay controls muted loop playsinline width="240" height="270">
-                      <source src="./static/videos-paper/2_7.mp4"
-                              type="video/mp4">
-                  </video>
-              </td>
-              <td>
-                  <video class="video border" poster="" autoplay controls muted loop playsinline width="240" height="270">
-                      <source src="./static/videos-paper/3_1.mp4"
-                              type="video/mp4">
-                  </video>
-              </td>
-              <td>
-                  <video class="video border" poster="" autoplay controls muted loop playsinline width="240" height="270">
-                      <source src="./static/videos-paper/4_1.mp4"
-                              type="video/mp4">
-                  </video>
-              </td>
-          </tr>
-      </table>
-
-      </div>
-
-
-        <!--  Qual. Eval. -->
-        <h3 class="title is-4">Qualitative Evaluation on HumanML3D</h3>
-        <div class="content has-text-justified">
-          <!-- <p>
-            Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
-            viewpoint such as a stabilized camera by playing back the training deformations.
-          </p> -->
-        </div>
-        <div class="content has-text-centered">
-          <img src="./static/images-paper/fig-quant-eval-ablation.png"/>
-        </div>
-        <!--/ Qual. Eval. -->
-
-
-        <!--  Fuzzy Membership Examples Studies. -->
-        <h3 class="title is-4">Learned Fuzzy Membership Functions and Uncertainity Modeling</h3>
-        <div class="content has-text-justified">
-          <!-- <p>
-            Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
-            viewpoint such as a stabilized camera by playing back the training deformations.
-          </p> -->
-        </div>
-        <div class="content has-text-centered">
-          <img src="./static/images-paper/fig-uncertainty-example.png", width="70%"/>
-        </div>
-        <!--/ Ablation Studies. -->
+        <section class="image-caption">
+            <p>FQK-T2M generates semantically accurate and contextually aligned human motions.</p>
+        </section>
 
 
 
+        <!-- Add this after your existing sections -->
+        <section class="video-grid">
+            <div class="grid-container">
+                <!-- Grid Item 1 -->
+                <div class="grid-item">
+                    <div class="video-box">
+                        <video autoplay loop muted playsinline width="240" height="270">
+                            <source src="./videos-paper/video-back-kick.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <h6 class="video-caption">
+                        Performing <span class="blue-bold">karate back kick</span>.  
+                    </h6>
+                </div>
 
+                <!-- Grid Item 2 -->
+                <div class="grid-item">
+                    <div class="video-box">
+                        <video autoplay loop muted playsinline width="240" height="270">
+                            <source src="./videos-paper/video-punching.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <h6 class="video-caption">
+                        Punching <span class="blue-bold"></span>the opponent <span class="blue-bold">repetitively</span>.  
+                    </h6>
+                </div>
 
+                <!-- Grid Item 3 -->
+                <div class="grid-item">
+                    <div class="video-box">
+                        <video autoplay loop muted playsinline width="240" height="270">
+                            <source src="./videos-paper/video-jump-rope.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <h6 class="video-caption">
+                        Performing <span class="blue-bold">jump rope</span>.
+                    </h6>
+                </div>
+
+                <!-- Grid Item 4 -->
+                <div class="grid-item">
+                    <div class="video-box">
+                        <video autoplay loop muted playsinline width="240" height="270">
+                            <source src="./videos-paper/video-hopping.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <h6 class="video-caption">
+                        Standing on <span class="blue-bold">one leg</span> and <span class="blue-bold">hopping</span>.
+                    </h6>
+                </div>
+
+                <!-- Grid Item 5 -->
+                <div class="grid-item">
+                    <div class="video-box">
+                        <video autoplay loop muted playsinline width="240" height="270">
+                            <source src="./videos-paper/video-balance-rope.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <h6 class="video-caption">
+                        Balance on a rope and <br/><span class="blue-bold">left foot</span> is <span class="blue-bold">infront</span>.  
+                    </h6>
+                </div>
+
+                <!-- Grid Item 6 -->
+                <div class="grid-item">
+                    <div class="video-box">
+                        <video autoplay loop muted playsinline width="240" height="270">
+                            <source src="./videos-paper/video-waving_left_hand.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <h6 class="video-caption">
+                        A person <span class="blue-bold">waving</span> with <br/><span class="blue-bold">left hand</span>.  
+                    </h6>
+                </div>
+
+                <!-- Grid Item 7 -->
+                <div class="grid-item">
+                    <div class="video-box">
+                        <video autoplay loop muted playsinline width="240" height="270">
+                            <source src="./videos-paper/video-professional-kick.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <h6 class="video-caption">
+                        <span class="blue-bold">Professional</span> player kicking <br/>a <span class="blue-bold">ball</span>.
+                    </h6>
+                </div>
+
+                <!-- Grid Item 8 -->
+                <div class="grid-item">
+                    <div class="video-box">
+                        <video autoplay loop muted playsinline width="240" height="270">
+                            <source src="./videos-paper/video-novice-kick.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <h6 class="video-caption">
+                        <span class="blue-bold">Novice</span> kicking a <span class="blue-bold">ball</span>.
+                    </h6>
+                </div>
 
                 
+            </div>
+        </section>
+
+        <br/><br/><br/>
+
+
+
+        <section class="method">
+            <h2>Proposed Method</h2>
+            <h4 class="red">(Hover the mouse over image to Zoom)</h4> <br/>
+    
+            <figure class="zoom" onmousemove="zoom(event)" style="background-image: url(./images-paper/fig-model.png)">
+                <img src="./images-paper/fig-model.png"/>
+            </figure>
+            <p>
+                Overview of the Proposed Framework: (a) Stage 1: modeling kinematic uncertainty and linguistic ambiguity resolution, (b) Stage 2: contextual motion diffusion (C-MDM).
+            </p> 
+
+        </section>
+
+        <br/><br/>
         
-        <!-- Qunat. HumanML3D. -->
-        <h3 class="title is-4">Quantitative Evaluation on HumanML3D</h3>
-        <div class="content has-text-justified">
-          <!-- <p>
-            We can also animate the scene by interpolating the deformation latent codes of two input
-            frames. Use the slider here to linearly interpolate between the left frame and the right
-            frame.
-          </p> -->
-          <div class="content has-text-centered">
-            <img src="./static/images-paper/fig-quant-eval-humanml3d.png"/>
-          </div>
-        </div>
-        
-        <!--/ Qunat. HumanML3D. -->
 
-        <!-- Qunat. KITML. -->
-        <h3 class="title is-4">Quantitative Evaluation on KITML</h3>
-        <div class="content has-text-justified">
-          <!-- <p>
-            Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
-            viewpoint such as a stabilized camera by playing back the training deformations.
-          </p> -->
-        </div>
-        <div class="content has-text-centered">
-          <img src="./static/images-paper/fig-quant-eval-kitml.png"/>
-        </div>
-        <!--/ Qunat. KITML. -->
+        <section class="kf">
+            <h2>Kinematic Facts (KFs)</h2>
+            <h4 class="red">(Hover the mouse over image to Zoom)</h4> <br/>
+    
+            <figure class="zoom" onmousemove="zoom(event)" style="background-image: url(./images-paper/fig-kfs.png)">
+                <img src="./images-paper/fig-kfs.png"/>
+            </figure>
+            <p>
+            Visualization of kinematic facts: LLA, JLA, JJA, JJD, JLD, LLD, JD, LD, LAD, JS, and LS across two consecutive frames <i>t</i> and <i>t-1</i>.
+            </p>  
 
+        </section>
 
+        <br/><br/><br/><br/>
 
-
-
-
-
-
-
-
-
-        <!--  Ablation Studies. -->
-        <h3 class="title is-4">Ablation Studies</h3>
-        <div class="content has-text-justified">
-          <!-- <p>
-            Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
-            viewpoint such as a stabilized camera by playing back the training deformations.
-          </p> -->
-        </div>
-        <div class="content has-text-centered">
-          <img src="./static/images-paper/fig-quant-eval-ablation.png"/>
-        </div>
-        <!--/ Ablation Studies. -->
-
-      </div>
     </div>
-    <!--/ Evaluation and comparison with SOTA. -->
 
 
+        <div class="full-width-container ">
+            <div class="container">
+    
+                <!-- Add this after your existing sections -->
+                <section class="two-column-grid">
+                    <div class="two-column-grid-container">
+
+                        <div class="grid-item">
+                            <div class="column-box">
+                                <h2>D-FKF Module</h2>
+                                <p> The Dual-branch Fuzzy Kinematic Fact (D-FKF) module automatically learn these membership functions, employing a dual-branch adaptive neuro-fuzzy inference (D-ANFIS). </p>
+                                <img src="./images-paper/fig-dfkf.png" width="85%"/>
+                            </div>
+                        </div>
+
+                        <div class="grid-item">
+
+                            <div class="column-box">
+                                <h2>GASA Module</h2>
+                                <p> We introduce Graph-Augmented Self-Attention (GASA) Module, a modified self-attention block, that integrates missing spatio-temporal relational guidance via two graph structures.</p>
+                                <img src="./images-paper/fig-gasa.png" width="90%"/>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </section>
+            
+            </div>
+        </div>
 
 
+        
+       
 
-
+        <br/><br/><br/>
     
 
-  </div>
-</section>
+    <div class="container">
+    
 
-
-<section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>@article{manjotho2025fqkt2m,
-  author    = {Manjotho, Ali Asghar and Tekie, Tsegay Tewolde and Duma, Ramadhani Ally and Zhendong, Niu},
-  title     = {Fuzzy Kinematic Modeling and LLM-Guidance for Resolving Kinematic Uncertainties and Linguistic Ambiguities in Text-to-Motion Generation},
-  journal   = {Expert Systems with Applications},
-  year      = {2025},
-}</code></pre>
-  </div>
-</section>
-
-
-
-
-
-
-
-<footer class="footer">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content has-text-centered">
-          <img src="./static/images-paper/fig-bit-logo-2.svg", width="15%"/>
-          <img src="./static/images-paper/fig-muet-logo.svg", width="15%"/>
-
-          <p> This project is supported my Beijing Institute of Technology, China and Mehran University of Engineering and Technology, Pakistan. </p>
-          <p>
-            This website is licensed under a <a rel="license"
-                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-            Commons Attribution-ShareAlike 4.0 International License.</a> The template is based on this <a
-            href="https://github.com/nerfies/nerfies.github.io">source code</a>.
-          </p>
+        <div class="animation-slider-container">
+            <div id="sequence-viewer-1"></div>
+            <br/><br/>
+            <div id="sequence-viewer-2"></div>
         </div>
-      </div>
+    
+
+
+
+
+
+
+
+    <!-- Evaluation and comparison with SOTA. -->
+        <section class="evaluation">
+            <br/><br/>
+            <h2>Evaluation and Comparison with SOTA</h2>
+            <br/>
+    
+            
+    
+            <h3>Qualitative Evaluation on HumanML3D</h3>
+            <div>
+    
+            <h4>(The frames in <span class="blue-bold">BLUE</span> meshes indicate valid motions, frames with <span class="red-bold">RED</span> meshes indicate anomalies)</h4>
+    
+            <table class="qualitative-table">
+                <tr>
+                <td><h6>
+                    Method
+                </h6>
+                </td>  
+                    <td><h6>A person is <span class="blue-bold">walking <br/>straight</span> and <span class="blue-bold">turns left</span>.</h6></td>
+            
+                    <td><h6>A person is <span class="blue-bold">walking <br/>forward slowly</span> while <br/>holding <span class="blue-bold">both arms slightly up</span>.</h6></td>
+    
+                    <td><h6>A person is <span class="blue-bold">sprinting <br/>forward</span> and <span class="blue-bold">bends down</span>.</h6></td>
+    
+                    <td><h6>A person is <span class="blue-bold">walking <br/>slightly slowly </span> in a <br/><span class="blue-bold">circle</span>.</h6></td>        
+                </tr>
+                <tr>
+                <td><h6>TEMOS</h6></td>
+                    <td>
+                        <video class="border" poster="" autoplay controls muted loop playsinline width="240" height="270">
+                            <source src="./videos-paper/1_3.mp4" type="video/mp4">
+                        </video>
+                    </td>
+                    <td>
+                        <video class="border" poster="" autoplay controls muted loop playsinline width="240" height="270">
+                            <source src="./videos-paper/2_0.mp4" type="video/mp4">
+                        </video>
+                    </td>
+                    <td>
+                        <video class="border" poster="" autoplay controls muted loop playsinline width="240" height="270">
+                            <source src="./videos-paper/3_0.mp4" type="video/mp4">
+                        </video>
+                    </td>
+                    <td>
+                        <video class="border" poster="" autoplay controls muted loop playsinline width="240" height="270">
+                            <source src="./videos-paper/4_8.mp4" type="video/mp4">
+                        </video>
+                    </td>
+                </tr>
+                <tr>
+                <td><h6>T2M-GPT</h6></td>
+                    <td>
+                        <video class="border" poster="" autoplay controls muted loop playsinline width="240" height="270">
+                            <source src="./videos-paper/1_1.mp4" type="video/mp4">
+                        </video>
+                    </td>
+                    <td>
+                        <video class="border" poster="" autoplay controls muted loop playsinline width="240" height="270">
+                            <source src="./videos-paper/2_1.mp4" type="video/mp4">
+                        </video>
+                    </td>
+                    <td>
+                        <video class="border" poster="" autoplay controls muted loop playsinline width="240" height="270">
+                            <source src="./videos-paper/3_9.mp4" type="video/mp4">
+                        </video>
+                    </td>
+                    <td>
+                        <video class="border" poster="" autoplay controls muted loop playsinline width="240" height="270">
+                            <source src="./videos-paper/4_5.mp4" type="video/mp4">
+                        </video>
+                    </td>
+                </tr>
+                <tr>
+                <td><h6>MotionGPT</h6></td>
+                    <td>
+                        <video class="border" poster="" autoplay controls muted loop playsinline width="240" height="270">
+                            <source src="./videos-paper/1_0.mp4" type="video/mp4">
+                        </video>
+                    </td>
+                    <td>
+                        <video class="border" poster="" autoplay controls muted loop playsinline width="240" height="270">
+                            <source src="./videos-paper/2_8.mp4" type="video/mp4">
+                        </video>
+                    </td>
+                    <td>
+                        <video class="border" poster="" autoplay controls muted loop playsinline width="240" height="270">
+                            <source src="./videos-paper/3_1.mp4" type="video/mp4">
+                        </video>
+                    </td>
+                    <td>
+                        <video class="border" poster="" autoplay controls muted loop playsinline width="240" height="270">
+                            <source src="./videos-paper/4_1.mp4" type="video/mp4">
+                        </video>
+                    </td>
+                </tr>
+                <tr>
+                <td><h6>Ours</h6></td>
+                    <td>
+                        <video class="border" poster="" autoplay controls muted loop playsinline width="240" height="270">
+                            <source src="./videos-paper/1_0.mp4" type="video/mp4">
+                        </video>
+                    </td>
+                    <td>
+                        <video class="border" poster="" autoplay controls muted loop playsinline width="240" height="270">
+                            <source src="./videos-paper/2_7.mp4" type="video/mp4">
+                        </video>
+                    </td>
+                    <td>
+                        <video class="border" poster="" autoplay controls muted loop playsinline width="240" height="270">
+                            <source src="./videos-paper/3_1.mp4" type="video/mp4">
+                        </video>
+                    </td>
+                    <td>
+                        <video class="border" poster="" autoplay controls muted loop playsinline width="240" height="270">
+                            <source src="./videos-paper/4_1.mp4" type="video/mp4">
+                        </video>
+                    </td>
+                </tr>
+            </table>
+    
+            </div>
+    
+            
+            <br/><br/><br/><br/>
+            <!--  Fuzzy Membership Examples Studies. -->
+            <h3>Learned Fuzzy Membership Functions and Uncertainity Modeling</h3>          
+            <img src="./images-paper/fig-uncertainty-example.png" width="60%"/>
+            <!--/ Fuzzy Membership Examples Studies. -->
+    
+        
+            <br/><br/><br/><br/>
+            <!-- Qunat. HumanML3D. -->
+            <h3>Quantitative Evaluation on HumanML3D</h3>
+            <img src="./images-paper/fig-quant-eval-humanml3d.png" width="70%"/>          
+            <!--/ Qunat. HumanML3D. -->
+    
+            <br/><br/><br/><br/>
+            <!-- Qunat. KITML. -->
+            <h3>Quantitative Evaluation on KITML</h3>
+            <img src="./images-paper/fig-quant-eval-kitml.png" width="70%"/>
+            <!--/ Qunat. KITML. -->
+    
+    
+    
+    
+            <br/><br/><br/><br/>
+            <!--  Ablation Studies. -->
+            <h3>Ablation Studies</h3>
+            <img src="./images-paper/fig-quant-eval-ablation.png" width="70%"/>
+          <!--/ Ablation Studies. -->
+  
+    </section>
+    <!--/ Evaluation and comparison with SOTA. -->
+  
+  
+
+    
+</div>
+
+
+
+
+
+
+
+<div class="full-width-container ">
+    <div class="container">
+        <section class="footer">
+            <p>This project is supported my Beijing Institute of Technology, China and Mehran University of Engineering and Technology, Pakistan.</p>
+        </section>
     </div>
-  </div>
-</footer>
+</div>
+
+
+
+
+<script src="script.js"></script>
+
+<script>
+    // Initialize both viewers
+    const viewer1 = new ImageSequenceViewer(
+    document.getElementById('sequence-viewer-1'), 
+    {
+        folderPath: './interpolation/back_kick/',
+        numFrames: 72,
+        startFrame: 1,
+        endFrame: 72,
+        speed: 1.0,
+        autoplay: true
+    }
+    );
+
+    const viewer2 = new ImageSequenceViewer(
+    document.getElementById('sequence-viewer-2'), 
+    {
+        folderPath: './interpolation/boxing/',
+        numFrames: 512,
+        startFrame: 1,
+        endFrame: 512,
+        speed: 1.0,
+        autoplay: true
+    }
+    );
+</script>
+
 
 </body>
 </html>
-
-
-
-
-
-
-
