@@ -1,6 +1,6 @@
-# FQK-T2M
+# LLM-FQK-T2M
 
-This is the repository that contains source code for the [FQK-T2M website](https://alimanjotho.github.io/fqk-t2m/).
+This is the repository that contains source code for the [FQK-T2M website](https://alimanjotho.github.io/llm-fqk-t2m/).
 
 
 
